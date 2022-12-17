@@ -60,9 +60,16 @@ const Canvas = (props) => {
       }      
     }
 
-    let original = randomOriginalDot(firstDot, secondDot, thirdDot);
-    console.log(original[0]);
-    console.log(original[1]);
+    let originalDot = randomOriginalDot(firstDot, secondDot, thirdDot);
+    console.log('Original Dot: ' + originalDot)
+    let newDot = [x, y];
+    console.log('New Dot: ' + newDot);
+    let middleDot = getMidCoordinates(originalDot, newDot);
+    console.log(middleDot);
+    drawDot(middleDot[0], middleDot[1]);
+
+
+
     
 
 
@@ -93,7 +100,7 @@ const Canvas = (props) => {
 
   const randomOriginalDot = (first, second, third) => {
     let ran = Math.floor(Math.random() * 3) + 1;
-    console.log(ran);
+
     switch(ran){
       case 1:
         return first;
@@ -112,7 +119,14 @@ const Canvas = (props) => {
   }
 
   const getMidCoordinates = (pointOne, pointTwo) => {
-    console.log('got it');
+    let middle = [];
+    let x = (pointOne[0] + pointTwo[0])/2;
+    let y = (pointOne[1] + pointTwo[1])/2;
+
+    middle.push(x);
+    middle.push(y);    
+
+    return middle;
   }
 
   return(
