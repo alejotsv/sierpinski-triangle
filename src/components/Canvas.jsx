@@ -41,12 +41,23 @@ const Canvas = (props) => {
   }
 
   const drawTriangles = () => {
+    // Set base coordinates
     const firstDot = [300, 10];
     const secondDot = [50, 550];
     const thirdDot = [550, 550];
+
+    // Draw dots on base coordinates
     drawDot(firstDot[0], firstDot[1]);
     drawDot(secondDot[0], secondDot[1]);
     drawDot(thirdDot[0], thirdDot[1]);
+
+    // Establish triangle boundaries for random dots
+    ctx.beginPath();
+    ctx.moveTo(firstDot[0], firstDot[1]);
+    ctx.moveTo(secondDot[0], secondDot[1]);
+    ctx.moveTo(thirdDot[0], thirdDot[1]);
+
+    
   }
 
   const drawDot = (x, y) => {
