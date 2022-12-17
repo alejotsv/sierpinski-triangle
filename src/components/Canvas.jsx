@@ -66,7 +66,7 @@ const Canvas = (props) => {
 
     const handleLoop = () => {
       let i = 0;
-      while (i < 1000) {
+      while (i < 10000) {
         setTimeout(() => {
           originalDot = randomOriginalDot(firstDot,secondDot,thirdDot);
           middleDot = getMidCoordinates(originalDot, newDot);
