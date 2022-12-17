@@ -6,6 +6,7 @@ const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
   const [height, setHeight] = useState(props.height);
   let [message, setMessage] = useState('');
+  let [dotNum, setDotNum] = useState(0);
 
   // Variables for random dots
   let x;
@@ -70,12 +71,10 @@ const Canvas = (props) => {
     if (ctx.isPointInPath(x, y)) { // Test if the point is inside the triangle
       console.log('x: ' + x + ' y: ' + y + ' is inside the triangle');
       drawDot(x, y);
+      dotNum++;
+      setDotNum(dotNum);
     } else {
-      console.log('x: ' + x + ' y: ' + y + ' is outside the triangle');
-      ctx.fillStyle = 'red';
-      ctx.beginPath();
-      ctx.arc(x, y, 2, 0, 2 * Math.PI);
-      ctx.fill();
+      console.log('x: ' + x + ' y: ' + y + ' is outside the triangle');      
     }
 
   }
@@ -95,6 +94,7 @@ const Canvas = (props) => {
       <button onClick={draw}>Draw</button>
       <button onClick={clear}>Clear</button>
       <button onClick={drawTriangles}>Draw Triangles</button>
+      <h2>Dots inside the triangle: {dotNum}</h2>
       {message != '' && <h1>{message}</h1>}
     </div>
   )
