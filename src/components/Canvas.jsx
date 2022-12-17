@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
-  const [height, setHeight] = useState(props.height);  
+  const [height, setHeight] = useState(props.height);    
   let [dotNum, setDotNum] = useState(0);
   let [outNum, setOutNum] = useState(0);
 
@@ -24,7 +24,7 @@ const Canvas = (props) => {
     setOutNum(outNum);
   }
 
-  const drawTriangles = () => {
+  const drawTriangles = () => {            
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
@@ -49,13 +49,14 @@ const Canvas = (props) => {
           ctx.lineTo(thirdDot[0], thirdDot[1]);
           ctx.closePath();
 
-          x = Math.random() * 600; // Generate a random x coordinate
-          y = Math.random() * 600; // Generate a random y coordinate
+          x = Math.floor(Math.random() * 600); // Generate a random x coordinate
+          y = Math.floor(Math.random() * 600); // Generate a random y coordinate
           if (ctx.isPointInPath(x, y)) { // Test if the point is inside the triangle
             console.log('x: ' + x + ' y: ' + y + ' is inside the triangle');
             drawDot(x, y);
             dotNum++;
             setDotNum(dotNum);
+            randomOriginalDot(firstDot,secondDot,thirdDot);
           } else {
             console.log('x: ' + x + ' y: ' + y + ' is outside the triangle');
             outNum++;
@@ -79,10 +80,20 @@ const Canvas = (props) => {
     ctx.fill();
   }
 
+  const randomOriginalDot = (first, second, third) => {
+    let ran = Math.floor(Math.random() * 3) + 1;
+    console.log(ran);
+  }
+
+  const stopDrawing = () => {
+    console.log('To add button to stop drawing');
+  }
+
   return(
     <div>
       <canvas ref={canvasRef} width={width} height={height} />
-      <button onClick={drawTriangles}>Draw Triangles</button>      
+      <button onClick={drawTriangles}>Draw Triangles</button>
+      {/* <button onClick={stopDrawing}>Stop</button>      */}
       <button onClick={clear}>Clear</button>
       <h2>Dots inside the triangle: {dotNum}</h2>
       <h2>Dots outside the triangle: {outNum}</h2>  
