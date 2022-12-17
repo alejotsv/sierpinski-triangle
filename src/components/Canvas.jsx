@@ -60,32 +60,26 @@ const Canvas = (props) => {
       }      
     }
 
-    let originalDot = randomOriginalDot(firstDot, secondDot, thirdDot);
-    console.log('Original Dot: ' + originalDot)
-    let newDot = [x, y];
-    console.log('New Dot: ' + newDot);
-    let middleDot = getMidCoordinates(originalDot, newDot);
-    console.log(middleDot);
-    drawDot(middleDot[0], middleDot[1]);
+    let originalDot;
+    let middleDot;
+    let newDot = [x, y];        
 
+    const handleLoop = () => {
+      let i = 0;
+      while (i < 1000) {
+        setTimeout(() => {
+          originalDot = randomOriginalDot(firstDot,secondDot,thirdDot);
+          middleDot = getMidCoordinates(originalDot, newDot);
+          drawDot(middleDot[0], middleDot[1])
+          dotNum++;
+          setDotNum(dotNum);
+          newDot = middleDot;
+        }, i * 10);  // delay each iteration by 0.01 seconds
+        i++;
+      }
+    }
 
-
-    
-
-
-    // const handleLoop = () => {
-    //   let i = 0;
-    //   while (i < 1000) {
-    //     setTimeout(() => {
-    //       dotNum++;
-    //       setDotNum(dotNum);
-    //       randomOriginalDot(firstDot,secondDot,thirdDot);
-    //     }, i * 10);  // delay each iteration by 0.01 seconds
-    //     i++;
-    //   }
-    // }
-
-    // handleLoop();
+    handleLoop();
     
   }
 
