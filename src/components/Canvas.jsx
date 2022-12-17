@@ -7,6 +7,10 @@ const Canvas = (props) => {
   const [height, setHeight] = useState(props.height);
   let [message, setMessage] = useState('');
 
+  // Variables for random dots
+  let x;
+  let y;
+
   const canvasRef = useRef(null);
   
   let startX = 0;
@@ -41,6 +45,9 @@ const Canvas = (props) => {
   }
 
   const drawTriangles = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+
     // Set base coordinates
     const firstDot = [300, 10];
     const secondDot = [50, 550];
@@ -54,16 +61,29 @@ const Canvas = (props) => {
     // Establish triangle boundaries for random dots
     ctx.beginPath();
     ctx.moveTo(firstDot[0], firstDot[1]);
-    ctx.moveTo(secondDot[0], secondDot[1]);
-    ctx.moveTo(thirdDot[0], thirdDot[1]);
+    ctx.lineTo(secondDot[0], secondDot[1]);
+    ctx.lineTo(thirdDot[0], thirdDot[1]);
+    ctx.closePath();
 
-    
+    x = Math.random() * 600; // Generate a random x coordinate
+    y = Math.random() * 600; // Generate a random y coordinate
+    if (ctx.isPointInPath(x, y)) { // Test if the point is inside the triangle
+      console.log('x: ' + x + ' y: ' + y + ' is inside the triangle');
+      drawDot(x, y);
+    } else {
+      console.log('x: ' + x + ' y: ' + y + ' is outside the triangle');
+      ctx.fillStyle = 'red';
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
   }
 
   const drawDot = (x, y) => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = 'blue';
     ctx.beginPath();
     ctx.arc(x, y, 2, 0, 2 * Math.PI);
     ctx.fill();
