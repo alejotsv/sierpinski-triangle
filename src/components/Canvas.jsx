@@ -41,16 +41,21 @@ const Canvas = (props) => {
   }
 
   const drawTriangles = () => {
-    const firstDot = [0, 1];
-    const secondDot = [2, 2];
-    const thirdDot = [3, 3];
+    const firstDot = [300, 10];
+    const secondDot = [50, 550];
+    const thirdDot = [550, 550];
     drawDot(firstDot[0], firstDot[1]);
     drawDot(secondDot[0], secondDot[1]);
     drawDot(thirdDot[0], thirdDot[1]);
   }
 
   const drawDot = (x, y) => {
-    console.log('I will draw a dot at X: ' + x + " and Y: " + y);
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, 2 * Math.PI);
+    ctx.fill();
   }
 
   return(
