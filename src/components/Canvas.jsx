@@ -6,6 +6,7 @@ const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
   const [height, setHeight] = useState(props.height);  
   let [dotNum, setDotNum] = useState(0);
+  let [outNum, setOutNum] = useState(0);
 
   // Variables for random dots
   let x;
@@ -16,7 +17,11 @@ const Canvas = (props) => {
   const clear = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);  
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    dotNum = 0;
+    setDotNum(dotNum);
+    outNum = 0;
+    setOutNum(outNum);
   }
 
   const drawTriangles = () => {
@@ -33,23 +38,36 @@ const Canvas = (props) => {
     drawDot(secondDot[0], secondDot[1]);
     drawDot(thirdDot[0], thirdDot[1]);
 
-    // Establish triangle boundaries for random dots
-    ctx.beginPath();
-    ctx.moveTo(firstDot[0], firstDot[1]);
-    ctx.lineTo(secondDot[0], secondDot[1]);
-    ctx.lineTo(thirdDot[0], thirdDot[1]);
-    ctx.closePath();
+    const handleLoop = () => {
+      let i = 0;
+      while (i < 1000) {
+        setTimeout(() => {
+          // Establish triangle boundaries for random dots
+          ctx.beginPath();
+          ctx.moveTo(firstDot[0], firstDot[1]);
+          ctx.lineTo(secondDot[0], secondDot[1]);
+          ctx.lineTo(thirdDot[0], thirdDot[1]);
+          ctx.closePath();
 
-    x = Math.random() * 600; // Generate a random x coordinate
-    y = Math.random() * 600; // Generate a random y coordinate
-    if (ctx.isPointInPath(x, y)) { // Test if the point is inside the triangle
-      console.log('x: ' + x + ' y: ' + y + ' is inside the triangle');
-      drawDot(x, y);
-      dotNum++;
-      setDotNum(dotNum);
-    } else {
-      console.log('x: ' + x + ' y: ' + y + ' is outside the triangle');      
+          x = Math.random() * 600; // Generate a random x coordinate
+          y = Math.random() * 600; // Generate a random y coordinate
+          if (ctx.isPointInPath(x, y)) { // Test if the point is inside the triangle
+            console.log('x: ' + x + ' y: ' + y + ' is inside the triangle');
+            drawDot(x, y);
+            dotNum++;
+            setDotNum(dotNum);
+          } else {
+            console.log('x: ' + x + ' y: ' + y + ' is outside the triangle');
+            outNum++;
+            setOutNum(outNum);   
+          }
+        }, i * 10);  // delay each iteration by 0.01 seconds
+        i++;
+      }
     }
+
+    handleLoop();
+    
   }
 
   const drawDot = (x, y) => {
@@ -66,7 +84,8 @@ const Canvas = (props) => {
       <canvas ref={canvasRef} width={width} height={height} />
       <button onClick={drawTriangles}>Draw Triangles</button>      
       <button onClick={clear}>Clear</button>
-      <h2>Dots inside the triangle: {dotNum}</h2>      
+      <h2>Dots inside the triangle: {dotNum}</h2>
+      <h2>Dots outside the triangle: {outNum}</h2>  
     </div>
   )
 }
