@@ -40,11 +40,25 @@ const Canvas = (props) => {
     setMessage(message);
   }
 
+  const drawTriangles = () => {
+    const firstDot = [0, 1];
+    const secondDot = [2, 2];
+    const thirdDot = [3, 3];
+    drawDot(firstDot[0], firstDot[1]);
+    drawDot(secondDot[0], secondDot[1]);
+    drawDot(thirdDot[0], thirdDot[1]);
+  }
+
+  const drawDot = (x, y) => {
+    console.log('I will draw a dot at X: ' + x + " and Y: " + y);
+  }
+
   return(
     <div>
       <canvas ref={canvasRef} width={width} height={height} />
       <button onClick={draw}>Draw</button>
       <button onClick={clear}>Clear</button>
+      <button onClick={drawTriangles}>Draw Triangles</button>
       {message != '' && <h1>{message}</h1>}
     </div>
   )
