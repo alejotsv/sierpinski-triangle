@@ -7,7 +7,12 @@ const Canvas = () => {
   const draw = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect(0, 0, 50, 50);
   }
+
+  // draw();
 
   return(
     <canvas ref={canvasRef} width={600} height={400} />
