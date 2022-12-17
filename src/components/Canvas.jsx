@@ -59,8 +59,12 @@ const Canvas = (props) => {
         y = Math.floor(Math.random() * 600); // Generate a new random y coordinate        
       }      
     }
+
+    let original = randomOriginalDot(firstDot, secondDot, thirdDot);
+    console.log(original[0]);
+    console.log(original[1]);
     
-    
+
 
     // const handleLoop = () => {
     //   let i = 0;
@@ -90,10 +94,25 @@ const Canvas = (props) => {
   const randomOriginalDot = (first, second, third) => {
     let ran = Math.floor(Math.random() * 3) + 1;
     console.log(ran);
+    switch(ran){
+      case 1:
+        return first;
+        break;
+      case 2:
+        return second;
+        break;
+      case 3:
+        return third;
+        break;
+    }
   }
 
   const stopDrawing = () => {
     console.log('To add button to stop drawing');
+  }
+
+  const getMidCoordinates = (pointOne, pointTwo) => {
+    console.log('got it');
   }
 
   return(
