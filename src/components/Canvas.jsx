@@ -1,10 +1,16 @@
 import React from 'react';
+import { useRef } from 'react';
 
-const Canvas = (props) => {
+const Canvas = () => {
+  const canvasRef = useRef(null);
+
+  const draw = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+  }
+
   return(
-    <h1>
-      This is my Canvas
-    </h1>
+    <canvas ref={canvasRef} width={600} height={400} />
   )
 }
 
