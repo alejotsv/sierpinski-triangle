@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
@@ -127,15 +128,32 @@ const Canvas = (props) => {
 
 
   return(
-    <Box display="flex" flexDirection="column "justifyContent="center" alignItems="center">
+    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <canvas className="canvas" ref={canvasRef} width={width} height={height} />
+      
+      <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center">
+        <Slider style={{margin:'0px', width:'250px'}}
+          defaultValue={50}
+          aria-labelledby="discrete-slider"
+          valueLabelDisplay="auto"
+          step={10}          
+          min={0}
+          max={25000}
+        />
+
+        <Button style={{margin:'20px', width:'170px'}}
+                  variant="contained"
+                  onClick={drawTriangles}>
+                  Choose Number</Button>
+      </Box>
+
       <Box>
-        <Button style={{margin:'20px'}}
-                variant="contained"
+        <Button style={{margin:'20px', width:'170px'}}
+                variant="contained"                
                 onClick={drawTriangles}>
                   Draw Triangles</Button>
 
-        <Button style={{margin:'20px'}}
+        <Button style={{margin:'20px', width:'170px'}}
                 variant="contained"
                 onClick={clear}>
                   Clear</Button>
