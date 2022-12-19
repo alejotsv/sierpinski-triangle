@@ -8,6 +8,7 @@ import Slider from '@mui/material/Slider';
 const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
   const [height, setHeight] = useState(props.height);    
+  const [sliderValue, setSliderValue] = useState(50);
   let [dotNum, setDotNum] = useState(0);  
 
   // Variables for random dots
@@ -126,6 +127,14 @@ const Canvas = (props) => {
     return middle;
   }
 
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
+  }
+
+  const setNumberOfDots = () => {
+    console.log(sliderValue);
+  }
+
 
   return(
     <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -133,17 +142,17 @@ const Canvas = (props) => {
       
       <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center">
         <Slider style={{margin:'0px', width:'250px'}}
-          defaultValue={50}
+          value={sliderValue}
+          onChange={handleSliderChange}
           aria-labelledby="discrete-slider"
-          valueLabelDisplay="auto"
-          step={10}          
+          valueLabelDisplay="auto"                   
           min={0}
           max={25000}
         />
 
         <Button style={{margin:'20px', width:'170px'}}
                   variant="contained"
-                  onClick={drawTriangles}>
+                  onClick={setNumberOfDots}>
                   Choose Number</Button>
       </Box>
 
