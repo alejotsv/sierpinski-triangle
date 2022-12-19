@@ -2,6 +2,7 @@ import React from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
@@ -126,21 +127,22 @@ const Canvas = (props) => {
 
 
   return(
-    <div>
+    <Box display="flex" flexDirection="column "justifyContent="center" alignItems="center">
       <canvas className="canvas" ref={canvasRef} width={width} height={height} />
+      <Box>
+        <Button style={{margin:'20px'}}
+                variant="contained"
+                onClick={drawTriangles}>
+                  Draw Triangles</Button>
 
-      <Button style={{margin:'20px'}}
-              variant="contained"
-              onClick={drawTriangles}>
-                Draw Triangles</Button>
-
-      <Button style={{margin:'20px'}}
-              variant="contained"
-              onClick={clear}>
-                Clear</Button>
-
+        <Button style={{margin:'20px'}}
+                variant="contained"
+                onClick={clear}>
+                  Clear</Button>
+      </Box>
+      
       <h2>Dots drawn: {dotNum}</h2>      
-    </div>
+    </Box>
   )
 }
 
