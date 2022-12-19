@@ -8,7 +8,7 @@ import Slider from '@mui/material/Slider';
 const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
   const [height, setHeight] = useState(props.height);    
-  const [sliderValue, setSliderValue] = useState(50);
+  const [sliderValue, setSliderValue] = useState(1000);
   let [dotNum, setDotNum] = useState(0);  
 
   // Variables for random dots
@@ -25,7 +25,7 @@ const Canvas = (props) => {
     setDotNum(dotNum);
   }
 
-  const drawTriangles = () => {            
+  const drawTriangles = () => {       
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
@@ -66,11 +66,12 @@ const Canvas = (props) => {
 
     let originalDot;
     let middleDot;
-    let newDot = [x, y];        
+    let newDot = [x, y];
+    let totalNumberOfDots = setNumberOfDots();      
 
     const handleLoop = () => {
       let i = 0;
-      while (i < 1000) {
+      while (i < totalNumberOfDots) {
         setTimeout(() => {
           originalDot = randomOriginalDot(firstDot,secondDot,thirdDot);
           middleDot = getMidCoordinates(originalDot, newDot);
@@ -132,7 +133,8 @@ const Canvas = (props) => {
   }
 
   const setNumberOfDots = () => {
-    console.log(sliderValue);
+    let num = sliderValue;
+    return num;
   }
 
 
@@ -150,10 +152,6 @@ const Canvas = (props) => {
           max={25000}
         />
 
-        <Button style={{margin:'20px', width:'170px'}}
-                  variant="contained"
-                  onClick={setNumberOfDots}>
-                  Choose Number</Button>
       </Box>
 
       <Box>
