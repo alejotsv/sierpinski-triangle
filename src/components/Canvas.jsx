@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
+import Button from '@mui/material/Button';
 
 const Canvas = (props) => {
   const [width, setWidth] = useState(props.width);
@@ -123,12 +124,21 @@ const Canvas = (props) => {
     return middle;
   }
 
+
   return(
     <div>
-      <canvas ref={canvasRef} width={width} height={height} />
-      <button onClick={drawTriangles}>Draw Triangles</button>
-      {/* <button onClick={stopDrawing}>Stop</button>      */}
-      <button onClick={clear}>Clear</button>
+      <canvas className="canvas" ref={canvasRef} width={width} height={height} />
+
+      <Button style={{margin:'20px'}}
+              variant="contained"
+              onClick={drawTriangles}>
+                Draw Triangles</Button>
+
+      <Button style={{margin:'20px'}}
+              variant="contained"
+              onClick={clear}>
+                Clear</Button>
+
       <h2>Dots drawn: {dotNum}</h2>      
     </div>
   )
