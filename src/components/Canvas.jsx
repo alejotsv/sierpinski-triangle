@@ -30,9 +30,13 @@ const Canvas = (props) => {
     const ctx = canvas.getContext('2d');
 
     // Set base coordinates
-    const firstDot = [300, 10];
-    const secondDot = [50, 550];
-    const thirdDot = [550, 550];
+    const vertice = width/2;
+    const top_space = height/60;
+    const side_space = width/12;
+
+    const firstDot = [vertice, top_space];
+    const secondDot = [side_space, height-side_space];
+    const thirdDot = [width-side_space, height-side_space];
 
     // Draw dots on base coordinates
     drawDot(firstDot[0], firstDot[1]);
