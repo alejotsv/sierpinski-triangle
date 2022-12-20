@@ -51,8 +51,8 @@ const Canvas = (props) => {
      ctx.closePath();
     
     // Draw random dot inside the triangle
-    x = Math.floor(Math.random() * 600); // Generate a random x coordinate
-    y = Math.floor(Math.random() * 600); // Generate a random y coordinate
+    x = Math.floor(Math.random() * width); // Generate a random x coordinate
+    y = Math.floor(Math.random() * height); // Generate a random y coordinate
 
     let isDrawn = false;
 
@@ -63,8 +63,8 @@ const Canvas = (props) => {
         isDrawn = true;        
       } else {
         console.log('x: ' + x + ' y: ' + y + ' is outside the triangle');
-        x = Math.floor(Math.random() * 600); // Generate a new random x coordinate
-        y = Math.floor(Math.random() * 600); // Generate a new random y coordinate        
+        x = Math.floor(Math.random() * width); // Generate a new random x coordinate
+        y = Math.floor(Math.random() * height); // Generate a new random y coordinate        
       }      
     }
 
