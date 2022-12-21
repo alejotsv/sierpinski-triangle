@@ -33,7 +33,7 @@ const Canvas = (props) => {
     textY += 40;
     ctx.fillText('1. Three dots are drawn to create a triangle', textX, textY);
     textY += 20;
-    ctx.fillText('2. A random dot is created inside the triangle (current dot)', textX, textY);
+    ctx.fillText('2. A random dot is drawn inside the triangle (current dot)', textX, textY);
     textY += 20;
     ctx.fillText('3. One of the original three dots is selected randomly', textX, textY);
     textY += 20;
