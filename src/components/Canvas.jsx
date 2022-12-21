@@ -56,7 +56,9 @@ const Canvas = (props) => {
     setDotNum(dotNum);
   }
 
-  const drawTriangles = () => {       
+  const drawTriangles = () => {    
+    clear();
+    
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
