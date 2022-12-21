@@ -23,7 +23,7 @@ const Canvas = (props) => {
   
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');    
-    let textX = 0;
+    let textX = 30;
     let textY = height/4;
     ctx.font = '14px sans-serif';
 
@@ -33,17 +33,25 @@ const Canvas = (props) => {
     textY += 40;
     ctx.fillText('1. Three dots are drawn to create a triangle', textX, textY);
     textY += 20;
-    ctx.fillText('2. A dot is created at a random inside the triangle (current dot)', textX, textY);
+    ctx.fillText('2. A random dot is created inside the triangle (current dot)', textX, textY);
     textY += 20;
-    ctx.fillText('3. A of the original three dots is selected randomly', textX, textY);
+    ctx.fillText('3. One of the original three dots is selected randomly', textX, textY);
     textY += 20;
-    ctx.fillText('4. A new dot is drawn halfway between the current dot and the dot selected in step 3', textX, textY);
+    ctx.fillText('4. A new dot is drawn halfway between the current dot', textX, textY);
+    textY += 20;
+    ctx.fillText('   and the dot selected in step 3', textX, textY);
     textY += 20;
     ctx.fillText('5. The dot drawn in step 4 becomes \'current dot\'', textX, textY);
-    textY += 20;
-    ctx.fillText('Then steps 3, 4, and 5 are repeated until the number of dots you select are drawn', textX, textY);
     textY += 40;
-    ctx.fillText('Now select how many dots you wish to draw, click on Draw Dots, and enjoy!', textX, textY);
+    ctx.fillText('Steps 3, 4, and 5 are repeated', textX, textY);
+    textY += 20;
+    ctx.fillText('until the number of dots you select are drawn', textX, textY);
+    textY += 40;
+    ctx.fillText('Now select how many dots you wish to draw', textX, textY);
+    textY +=20;
+    ctx.fillText('by moving the slider bar,', textX, textY);
+    textY +=20;
+    ctx.fillText('click on Draw Dots, and enjoy!', textX, textY);
   }, []);
 
 
