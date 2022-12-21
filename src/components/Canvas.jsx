@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
@@ -16,6 +17,15 @@ const Canvas = (props) => {
   let y;
 
   const canvasRef = useRef(null);
+  
+  useEffect( () => {
+  
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');    
+    ctx.fillText('Hello', width - (width/2), height - (height/2));
+  }, []);
+
+
 
   const clear = () => {
     const canvas = canvasRef.current;
