@@ -23,8 +23,27 @@ const Canvas = (props) => {
   
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');    
-    ctx.fillText('Hello here', width - (width/2), height - (height/2));
-    ctx.fillText('Hello there', width - (width/2), height - (height/2 + 20));
+    let textX = 0;
+    let textY = height/4;
+    ctx.font = '14px sans-serif';
+
+    ctx.fillText('Discover what pattern is created by drawing ', textX, textY);
+    textY += 20;
+    ctx.fillText('consecutive dots, following this set of rules.', textX, textY);
+    textY += 40;
+    ctx.fillText('1. Three dots are drawn to create a triangle', textX, textY);
+    textY += 20;
+    ctx.fillText('2. A dot is created at a random inside the triangle (current dot)', textX, textY);
+    textY += 20;
+    ctx.fillText('3. A of the original three dots is selected randomly', textX, textY);
+    textY += 20;
+    ctx.fillText('4. A new dot is drawn halfway between the current dot and the dot selected in step 3', textX, textY);
+    textY += 20;
+    ctx.fillText('5. The dot drawn in step 4 becomes \'current dot\'', textX, textY);
+    textY += 20;
+    ctx.fillText('Then steps 3, 4, and 5 are repeated until the number of dots you select are drawn', textX, textY);
+    textY += 40;
+    ctx.fillText('Now select how many dots you wish to draw, click on Draw Dots, and enjoy!', textX, textY);
   }, []);
 
 
@@ -50,7 +69,7 @@ const Canvas = (props) => {
     const secondDot = [side_space, height-side_space];
     const thirdDot = [width-side_space, height-side_space];
 
-    // Draw dots on base coordinates
+    // Draw dots on base coordinates    
     drawDot(firstDot[0], firstDot[1]);
     drawDot(secondDot[0], secondDot[1]);
     drawDot(thirdDot[0], thirdDot[1]);
