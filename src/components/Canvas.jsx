@@ -17,12 +17,14 @@ const Canvas = (props) => {
   let y;
 
   const canvasRef = useRef(null);
-  
+
+  // Add initial text
   useEffect( () => {
   
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');    
-    ctx.fillText('Hello', width - (width/2), height - (height/2));
+    ctx.fillText('Hello here', width - (width/2), height - (height/2));
+    ctx.fillText('Hello there', width - (width/2), height - (height/2 + 20));
   }, []);
 
 
@@ -172,7 +174,7 @@ const Canvas = (props) => {
         <Button style={{margin:'20px', width:'170px'}}
                 variant="contained"                
                 onClick={drawTriangles}>
-                  Draw Triangles</Button>
+                  Draw Dots</Button>
 
         <Button style={{margin:'20px', width:'170px'}}
                 variant="contained"
