@@ -13,4 +13,4 @@ This program recreates the Sierpiński triangle following a series of simple ste
 4. It draws another dot exactly halfway between the *current dot* and the randomly selected *original dot*; the newly drawn dot becomes the *current dot* now
 5. steps 3 and 4 are repeated until the number of dots (as selected by the user) is reached
 
-
+Dots are drawn in an interval of 0.3 seconds, so the user can appreciate how the fractal is drawn.
